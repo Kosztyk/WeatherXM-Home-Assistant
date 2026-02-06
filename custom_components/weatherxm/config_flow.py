@@ -48,7 +48,7 @@ class WeatherXMOptionsFlow(config_entries.OptionsFlow):
 
     def __init__(self, config_entry):
         """Initialize options flow."""
-        self.config_entry = config_entry
+        self._config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
         """Manage the options."""
@@ -60,7 +60,7 @@ class WeatherXMOptionsFlow(config_entries.OptionsFlow):
             data_schema=vol.Schema({
                 vol.Optional(
                     CONF_DEVICE_INDEX,
-                    default=self.config_entry.options.get(CONF_DEVICE_INDEX, 0)
+                    default=self._config_entry.options.get(CONF_DEVICE_INDEX, 0),
                 ): int
-            })
+            }),
         )
